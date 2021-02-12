@@ -1,6 +1,3 @@
-//This code is intended to be pair with the Digital Multi-tool found at
-//www.instructables.com/id/Digital-Multi-Tool
-
 //This code is placed under the MIT license
 //Copyright (c) 2020 Albert Barber
 //
