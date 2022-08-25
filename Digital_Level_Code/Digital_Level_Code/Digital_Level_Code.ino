@@ -117,6 +117,9 @@ unsigned long lastZeroPress = millis();
 const uint8_t circleYcenter =  SCREEN_HEIGHT - (SCREEN_HEIGHT - YELLOW_BAR_HEIGHT) / 2;
 const uint8_t circleRadius = 23;
 
+//program runtime vars
+//Don't add any more, we're at max prog memory
+uint8_t circleXcenter;
 // ================================================================
 // ===                         IMU SETUP                        ===
 // ================================================================
@@ -299,9 +302,9 @@ void loop() {
     //subtrace the offset and convert to degrees
     float roll = (ypr[2] - yprOffsets[2]) * 180 / M_PI;
     //draw a crosshair circle, and a line across it representing the angle using the unit circle
-    float lineXOffset = circleRadius * cos(ypr[2]);
-    float lineYOffset = circleRadius * sin(ypr[2]);
-    uint8_t circleXcenter = circleRadius;
+    float lineXOffset = circleRadius * cos(-ypr[2]);
+    float lineYOffset = circleRadius * sin(-ypr[2]);
+    circleXcenter = circleRadius;
     drawCrosshairCircle(circleXcenter);
     display.drawLine(circleXcenter - lineXOffset, circleYcenter - lineYOffset , circleXcenter + lineXOffset, circleYcenter + lineYOffset, WHITE);
     display.setTextSize(2);
@@ -357,7 +360,7 @@ void loop() {
     xAngle -= xAngleOff;
     yAngle -= yAngleOff;
     yAngle *= -1; //- to account for sensor orientation
-    uint8_t circleXcenter = circleRadius;
+    circleXcenter = circleRadius;
     //display the angles and a crosshair circle
     //angles are displayed with one decimal to make them fit on one line
     display.setCursor(45, 57);
@@ -395,7 +398,7 @@ void loop() {
     //x and y co-ordinates for the angle line end/start points
     float lineXOffset = circleRadius * cos(ypr[0]);
     float lineYOffset = circleRadius * sin(ypr[0]);
-    uint8_t circleXcenter = circleRadius;
+    circleXcenter = circleRadius;
     display.clearDisplay();
     drawHeader("Protractor");
     display.setTextSize(2);
