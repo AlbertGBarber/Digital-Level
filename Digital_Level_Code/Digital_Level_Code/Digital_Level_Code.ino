@@ -396,8 +396,8 @@ void loop() {
     ypr[0] -= yprOffsets[0];
     float yaw = ypr[0] * 180 / M_PI;
     //x and y co-ordinates for the angle line end/start points
-    float lineXOffset = circleRadius * cos(ypr[0]);
-    float lineYOffset = circleRadius * sin(ypr[0]);
+    float lineXOffset = circleRadius * cos(-ypr[0]);
+    float lineYOffset = circleRadius * sin(-ypr[0]);
     circleXcenter = circleRadius;
     display.clearDisplay();
     drawHeader("Protractor");
